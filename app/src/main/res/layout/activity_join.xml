@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_calc"
+    android:id="@+id/activity_join"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,11 +20,11 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="아 이 디"/>
         <EditText
             android:id="@+id/et_id"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="INPUT ID"/>
     </LinearLayout>
@@ -35,11 +35,11 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="비밀번호"/>
         <EditText
             android:id="@+id/et_pw"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="INPUT PW"/>
     </LinearLayout>
@@ -50,11 +50,11 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="이    름"/>
         <EditText
             android:id="@+id/et_name"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="INPUT NAME"/>
     </LinearLayout>
@@ -65,11 +65,11 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="이 메 일"/>
         <EditText
             android:id="@+id/et_email"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="INPUT MAIL"/>
     </LinearLayout>
@@ -80,11 +80,11 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="전화번호"/>
         <EditText
             android:id="@+id/et_phone"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="INPUT PHONE"/>
     </LinearLayout>
@@ -95,11 +95,11 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="이 미 지"/>
         <EditText
             android:id="@+id/et_photo"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="INPUT PHOTO"/>
     </LinearLayout>
@@ -110,11 +110,11 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="주    소"/>
         <EditText
             android:id="@+id/et_addr"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="INPUT ADDR"/>
     </LinearLayout>

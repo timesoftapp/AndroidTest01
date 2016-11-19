@@ -29,23 +29,24 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public MemberDTO detail(String id) {
-        MemberDTO member = new MemberDTO();
-        member = memberDao.detail(id);
+        MemberDTO member = memberDao.detail(id);
         return member;
     }
 
     @Override
     public ArrayList<MemberDTO> list() {
-        ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
-        list = memberDao.list();
+        ArrayList<MemberDTO> list = memberDao.list();
         return list;
     }
 
     @Override
-    public MemberDTO login(String id, String pw) {
-        MemberDTO member = new MemberDTO();
-        member = memberDao.login(id, pw);
-        return member;
+    public boolean login(MemberDTO param) {
+        MemberDTO member = memberDao.login(param.getId(), param.getPw());
+        if(member.getPw().equals(param.getPw())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

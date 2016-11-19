@@ -5,11 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="net.a84jonghoon.app.androidtest01.calc.CalcActivity">
+    tools:context="net.a84jonghoon.app.androidtest01.member.JoinActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""/>
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="#efefef"
+        android:text="계산기"/>
     <EditText
         android:id="@+id/et_first"
         android:layout_width="match_parent"
