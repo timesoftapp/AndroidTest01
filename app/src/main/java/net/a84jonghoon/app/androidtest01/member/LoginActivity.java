@@ -12,7 +12,7 @@ import net.a84jonghoon.app.androidtest01.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText et_loginId,et_loginPw;
-    Button bt_loginOk, bt_loginCancel;
+    Button bt_login, bt_join;
     MemberService service;
 
     @Override
@@ -23,11 +23,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         et_loginId = (EditText) findViewById(R.id.et_LoginId);
         et_loginPw = (EditText) findViewById(R.id.et_LoginPw);
-        bt_loginOk = (Button) findViewById(R.id.bt_LoginOk);
-        bt_loginCancel = (Button) findViewById(R.id.bt_LoginCancel);
+        bt_login = (Button) findViewById(R.id.bt_login);
+        bt_join = (Button) findViewById(R.id.bt_join);
 
-        bt_loginOk.setOnClickListener(this);
-        bt_loginCancel.setOnClickListener(this);
+        bt_login.setOnClickListener(this);
+        bt_join.setOnClickListener(this);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         param.setPw(pw);
         Intent intent;
         switch (v.getId()){
-            case R.id.bt_LoginOk :
+            case R.id.bt_login :
                 if(service.login(param)){
                     Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_LONG).show();
                     intent = new Intent(LoginActivity.this, ListActivity.class);
@@ -49,7 +49,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "로그인 실패!", Toast.LENGTH_LONG).show();
                 }
                 break;
-            case R.id.bt_LoginCancel :
+            case R.id.bt_join :
+                this.startActivity(new Intent(LoginActivity.this, JoinActivity.class));
                 break;
 
 

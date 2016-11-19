@@ -29,8 +29,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public MemberDTO detail(String id) {
-        MemberDTO member = memberDao.detail(id);
-        return member;
+        return memberDao.detail(id);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void delete(MemberDTO param) {
-        memberDao.delete(param);
+    public void delete(String id) {
+        memberDao.delete(id);
     }
 }

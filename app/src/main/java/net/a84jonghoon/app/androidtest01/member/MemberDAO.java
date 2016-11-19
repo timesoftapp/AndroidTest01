@@ -43,31 +43,31 @@ public class MemberDAO extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO "+ TABLE+" ("+ID+","+PW+","+NAME+","+
                 EMAIL+","+PHONE+","+PHOTO+","+ADDR+")\n" +
-                "VALUES ('kim','123','TEST','KIM','mail@mail.com','n/a','n/a');");
+                "VALUES ('kim','123','KIM','mail@mail.com','02-1234-5678','n/a','n/a');");
 
         db.execSQL("INSERT INTO "+ TABLE+" ("+ID+","+PW+","+NAME+","+
                 EMAIL+","+PHONE+","+PHOTO+","+ADDR+")\n" +
-                "VALUES ('test1','123','TEST','테스트1','mail@mail.com','n/a','n/a');");
+                "VALUES ('test1','123','테스트1','mail@mail.com','02-1234-5678','n/a','n/a');");
 
         db.execSQL("INSERT INTO "+ TABLE+" ("+ID+","+PW+","+NAME+","+
                 EMAIL+","+PHONE+","+PHOTO+","+ADDR+")\n" +
-                "VALUES ('test2','123','TEST','테스트2','mail@mail.com','n/a','n/a');");
+                "VALUES ('test2','123','테스트2','mail@mail.com','02-1234-5678','n/a','n/a');");
 
         db.execSQL("INSERT INTO "+ TABLE+" ("+ID+","+PW+","+NAME+","+
                 EMAIL+","+PHONE+","+PHOTO+","+ADDR+")\n" +
-                "VALUES ('test3','123','TEST','테스트3','mail@mail.com','n/a','n/a');");
+                "VALUES ('test3','123','테스트3','mail@mail.com','02-1234-5678','n/a','n/a');");
 
         db.execSQL("INSERT INTO "+ TABLE+" ("+ID+","+PW+","+NAME+","+
                 EMAIL+","+PHONE+","+PHOTO+","+ADDR+")\n" +
-                "VALUES ('test4','123','TEST','테스트4','mail@mail.com','n/a','n/a');");
+                "VALUES ('test4','123','테스트4','mail@mail.com','02-1234-5678','n/a','n/a');");
 
         db.execSQL("INSERT INTO "+ TABLE+" ("+ID+","+PW+","+NAME+","+
                 EMAIL+","+PHONE+","+PHOTO+","+ADDR+")\n" +
-                "VALUES ('test5','123','TEST','테스트5','mail@mail.com','n/a','n/a');");
+                "VALUES ('test5','123','테스트5','mail@mail.com','02-1234-5678','n/a','n/a');");
 
         db.execSQL("INSERT INTO "+ TABLE+" ("+ID+","+PW+","+NAME+","+
                 EMAIL+","+PHONE+","+PHOTO+","+ADDR+")\n" +
-                "VALUES ('test6','123','TEST','테스트6','mail@mail.com','n/a','n/a');");
+                "VALUES ('test6','123','테스트6','mail@mail.com','02-1234-5678','n/a','n/a');");
     }
 
     @Override
@@ -86,19 +86,32 @@ public class MemberDAO extends SQLiteOpenHelper {
         String sql = "";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(sql);
-
     }
     public int count(){
         int count = 0;
         return count;
     }
     public MemberDTO detail(String id){
-        MemberDTO member = new MemberDTO();
+        MemberDTO member = null;
+        String sql = "SELECT "+String.format("%s,%s,%s,%s,%s,%s,%s",ID,PW,NAME,EMAIL,PHONE,PHOTO,ADDR)
+                +String.format(" FROM %s WHERE %s = '%s';", TABLE, ID, id);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if(cursor.moveToNext()){
+            member = new MemberDTO();
+            member.setId(cursor.getString(0));
+            member.setPw(cursor.getString(1));
+            member.setEmail(cursor.getString(2));
+            member.setPhone(cursor.getString(3));
+            member.setPhoto(cursor.getString(4));
+            member.setAddr(cursor.getString(5));
+        }
         return member;
     }
     public ArrayList<MemberDTO> list(){
         ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
-        MemberDTO member;
         String sql = "SELECT "+String.format("%s,%s,%s,%s,%s,%s,%s",ID,PW,NAME,EMAIL,PHONE,PHOTO,ADDR)+" FROM member;";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
@@ -109,7 +122,7 @@ public class MemberDAO extends SQLiteOpenHelper {
         }
 
         do {
-            member = new MemberDTO();
+            MemberDTO member = new MemberDTO();
             member.setId(cursor.getString(0));
             member.setPw(cursor.getString(1));
             member.setEmail(cursor.getString(2));
@@ -124,19 +137,28 @@ public class MemberDAO extends SQLiteOpenHelper {
     public MemberDTO login(String id, String pw){
         Log.d("DAO LOGIN ID : ", id);
         Log.d("DAO LOGIN PW : ", pw);
-        String sql = "SELECT "+String.format("%s,%s,%s,%s,%s,%s,%s",ID,PW,NAME,EMAIL,PHONE,PHOTO,ADDR)+" FROM member WHERE ID = '"+id+"'";
-        MemberDTO member = new MemberDTO();
+        String sql = "SELECT "+String.format("%s,%s,%s,%s,%s,%s,%s",ID,PW,NAME,EMAIL,PHONE,PHOTO,ADDR)+" FROM member WHERE ID = '"+id+"';";
+        MemberDTO member = null;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         if(cursor.moveToNext()){
-            member.setPw(cursor.getString(0));
+            member = new MemberDTO();
+            member.setId(cursor.getString(0));
+            member.setPw(cursor.getString(1));
+            member.setEmail(cursor.getString(2));
+            member.setPhone(cursor.getString(3));
+            member.setPhoto(cursor.getString(4));
+            member.setAddr(cursor.getString(5));
         }
         return member;
     }
     public void update(MemberDTO param){
 
     }
-    public void delete(MemberDTO param){
-
+    public void delete(String id){
+        Log.d("DAO DELETE ID : ", id);
+        String sql = String.format("DELETE FROM %s WHERE %s = '%s';", TABLE, ID, id);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.rawQuery(sql, null);
     }
 }

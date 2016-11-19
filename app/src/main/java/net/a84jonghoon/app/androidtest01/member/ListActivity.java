@@ -1,7 +1,9 @@
 package net.a84jonghoon.app.androidtest01.member;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,8 @@ public class ListActivity extends AppCompatActivity {
 
     MemberService service;
     ListView lv_member;
+    final String[] arr = new String[1];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +45,30 @@ public class ListActivity extends AppCompatActivity {
 
         lv_member.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return false;
+            public boolean onItemLongClick(AdapterView<?> parent, View v, int i, long id) {
+                Object o = lv_member.getItemIdAtPosition(i);
+                MemberDTO member = (MemberDTO) o;
+
+                Toast.makeText(ListActivity.this, "삭제할 이름 ", Toast.LENGTH_LONG).show();
+                arr[0] = member.getId();
+                new AlertDialog.Builder(ListActivity.this)
+                        .setTitle("삭제 OK")
+                        .setMessage("정말로 삭제 하시겠습니까?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //삭제
+                                service.delete(arr[0]);
+                                startActivity(new Intent(ListActivity.this, ListActivity.class));
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //취소
+                            }
+                        }).show();
+                return true;
             }
         });
     }

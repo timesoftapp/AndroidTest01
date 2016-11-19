@@ -48,16 +48,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/bt_LoginOk"
+            android:id="@+id/bt_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Login"/>
         <Button
-            android:id="@+id/bt_LoginCancel"
+            android:id="@+id/bt_join"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel"/>
+            android:text="Join"/>
     </LinearLayout>
 </LinearLayout>
