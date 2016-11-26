@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public MemberDTO detail(String id) {
-        return memberDao.detail(id);
+        return memberDao.findBy(id);
     }
 
     @Override

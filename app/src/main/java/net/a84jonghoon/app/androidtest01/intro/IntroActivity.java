@@ -9,14 +9,14 @@ import android.widget.Button;
 import net.a84jonghoon.app.androidtest01.R;
 import net.a84jonghoon.app.androidtest01.member.LoginActivity;
 
-public class IntroActivity extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity implements View.OnClickListener{
     Button bt_regist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
         bt_regist = (Button) findViewById(R.id.bt_regist);
-        bt_regist.setOnClickListener(new );
+        bt_regist.setOnClickListener(this);
     }
 
     public void onClick(View v){

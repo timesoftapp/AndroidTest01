@@ -36,7 +36,7 @@ public class ListActivity extends AppCompatActivity {
                 Object o = lv_member.getItemIdAtPosition(i);
                 MemberDTO member = (MemberDTO) o;
 
-                Toast.makeText(ListActivity.this, "로그인 성공!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ListActivity.this, "상세보기!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ListActivity.this, DetailActivity.class);
                 intent.putExtra("id",member.getId());
                 startActivity(intent);
